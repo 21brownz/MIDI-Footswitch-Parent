@@ -41,7 +41,7 @@ void setButtonColor(int addr, int r, int g, int b){
   //TODO: IMPLEMENT DEBUG MODE
 }
 
-//gets the state of the button. if debug mode is on, it prints out the 
+//gets the state of the button. if debug mode is on, it prints out the state
 bool getButtonState(byte addr){
   Wire.requestFrom(addr,1);
   while(Wire.available()){    // slave may send less than requested
