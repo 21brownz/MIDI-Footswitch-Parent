@@ -16,7 +16,10 @@ class Button {
             Wire.write(rgb);
             Wire.endTransmission();
         }
-        void setColor(uint32_t rgb);
+        void setColor(uint32_t rgb){
+            Wire.beginTransmission(address);
+            Wire.wr
+        }
         uint16_t getTempo();
         uint32_t getColor();
         bool getSwitchState();
