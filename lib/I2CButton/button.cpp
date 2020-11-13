@@ -23,8 +23,8 @@ class Button {
             Wire.write(rgb);
             Wire.endTransmission();
         }
-        uint16_t getTempo(){
-            byte recieved[] = {00000000,00000000};
+        float getTempo(){
+            byte recieved[] = {0x0,0x0};
             Wire.beginTransmission(address);
             Wire.write("t");
             Wire.endTransmission();
@@ -33,10 +33,11 @@ class Button {
             while(Wire.available()){
                 recieved[i] = Wire.read();
             }
-            return (recieved[0] << 8) | recieved[1];
+            uint16_t returner = (recieved[0] << 8) | (recieved[1]);
+            return returner;
         }
         uint32_t getColor(){
-            byte recieved[] = {00000000, 00000000, 00000000, 00000000};
+            byte recieved[] = {0x0, 0x0, 0x0, 0x0};
             Wire.beginTransmission(address);
             Wire.write("g");
             Wire.endTransmission();
@@ -46,10 +47,11 @@ class Button {
                 recieved[i] = Wire.read();
                 i++;
             }
-            return (recieved[0] << 24) + (recieved[1] << 16) + (recieved[2] << 8) + recieved[3];
+            uint32_t value = (recieved[0] << 24) | (recieved[1] << 16) | (recieved[2] << 8) | (recieved[3]);
+            return value;
         }
         bool getSwitchState(){
-            byte recieved = 00000000;
+            byte recieved = 0x0;
             Wire.beginTransmission(address);
             Wire.write("b");
             Wire.endTransmission();
